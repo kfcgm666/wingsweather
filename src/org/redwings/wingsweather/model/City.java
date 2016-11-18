@@ -34,8 +34,8 @@ public class City {
 		return provinceId;
 	}
 	
-	public void setProvinceId(int proviceId) {
-		this.id = provinceId;
+	public void setProvinceId(int provinceId) {
+		this.provinceId = provinceId;
 	}
 
 }

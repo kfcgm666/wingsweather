@@ -17,7 +17,7 @@ public class WingsWeatherDB {
 	/**
 	 * 数据库名
 	 */
-	public static final String DB_NAME = "cool_weather";
+	public static final String DB_NAME = "wings_weather";
 	
 	/**
 	 * 数据库版本
@@ -135,14 +135,16 @@ public class WingsWeatherDB {
 	 */
 	public List<County> loadCounties(int cityId) {
 		List<County> list = new ArrayList<County>();
-		Cursor cursor = db.query("City", null, "city_id = ?", new String[] {String.valueOf(cityId)}, null, null, null);
+		Cursor cursor = db.query("County", null, "city_id = ?", new String[] {String.valueOf(cityId)}, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				County county = new County();
 				county.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				county.setCountyName(cursor.getString(cursor.getColumnIndex("county_name")));
 				county.setCountyCode(cursor.getString(cursor.getColumnIndex("county_code")));
-				county.setCityId(cursor.getInt(cursor.getColumnIndex("city_id")));
+				county.setCityId(cityId);
+//				county.setCityId(cursor.getInt(cursor.getColumnIndex("city_id")));   上面一句写成这样的也是阔以的
+				list.add(county);
 			} while (cursor.moveToNext());
 		}
 		if (cursor != null) {
