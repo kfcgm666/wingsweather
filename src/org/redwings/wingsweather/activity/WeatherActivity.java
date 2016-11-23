@@ -2,6 +2,7 @@ package org.redwings.wingsweather.activity;
 
 
 import org.redwings.wingsweather.R;
+import org.redwings.wingsweather.service.AutoUpdateService;
 import org.redwings.wingsweather.util.HttpCallbackListener;
 import org.redwings.wingsweather.util.HttpUtil;
 import org.redwings.wingsweather.util.Utility;
@@ -158,6 +159,8 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+		Intent intent = new Intent(this, AutoUpdateService.class);
+		startService(intent);
 	}
 
 	@Override
